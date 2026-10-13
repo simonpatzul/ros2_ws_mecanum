@@ -78,7 +78,7 @@ class Cinematica(Node):
         self.t_ant = None
 
         np.set_printoptions(precision=4, suppress=True)
-        self.get_logger().info(f'\nW =\n{self.W}\nW⁺ =\n{self.W_pinv}')
+        self.get_logger().info(f'\nQ =\n{self.W_pinv}\nW =\n{self.W}')
 
     # ---------- Cinemática inversa: ω = W⁺ ξ ----------
     def cb_cmd_vel(self, msg):

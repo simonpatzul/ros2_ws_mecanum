@@ -51,7 +51,7 @@ def ley_control(pose, meta):
     error_y = yd - y
     error_phi = envolver(theta_d - phi)
 
-    if math.hypot(error_x, error_y) <= TOL_POS and abs(error_phi) <= TOL_ANG:
+    if math.hypot(error_x, error_y) < TOL_POS and abs(error_phi) < TOL_ANG:
         return 0.0, 0.0, 0.0, True
 
     # For an omnidirectional robot, J maps body-frame velocity to odom-frame
