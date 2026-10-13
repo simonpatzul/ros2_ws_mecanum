@@ -27,23 +27,23 @@ Visualization Manager:
       Name: Image RGB
       Enabled: true
       Topic:
-        Value: /camera/image
+        Value: /camara/image
     - Class: rviz_default_plugins/Image
       Name: Image Profundidad
       Enabled: true
       Topic:
-        Value: /camera/depth_image
+        Value: /camara/depth_image
     - Class: rviz_default_plugins/PointCloud2
       Name: PointCloud2
       Enabled: true
       Topic:
-        Value: /camera/points
+        Value: /camara/points
       Size (m): 0.01
     - Class: rviz_default_plugins/Odometry
       Name: Odometry
       Enabled: true
       Topic:
-        Value: /odom_kinematic
+        Value: /odom
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48

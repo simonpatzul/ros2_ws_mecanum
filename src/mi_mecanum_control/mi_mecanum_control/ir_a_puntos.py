@@ -78,7 +78,7 @@ class IrAPuntos(Node):
         self.i = 0
         self.pose = None
 
-        self.create_subscription(Odometry, '/odom_kinematic', self.cb_odom, 10)
+        self.create_subscription(Odometry, '/odom', self.cb_odom, 10)
         self.pub = self.create_publisher(Twist, '/cmd_vel', 10)
         self.create_timer(0.02, self.lazo)    # 50 Hz
         self.get_logger().info(f'Puntos: {self.puntos}')

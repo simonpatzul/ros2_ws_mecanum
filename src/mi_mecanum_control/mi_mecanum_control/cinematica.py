@@ -9,8 +9,8 @@ cinematica.py — Cinemática del robot Mecanum (Parte 4)
     Inversa : ω = W⁺ ξ
 
 Lazo:
-    /cmd_vel --W⁺--> /<fl,fr,rl,rr>_wheel_cmd_vel --> Gazebo (JointController) --> ruedas
-    /joint_states --W--> ξ --η̇ = J(φ)ξ, Euler--> /odom_kinematic + TF odom -> base_link
+    /cmd_vel --W⁺--> /vel_rueda_* --> Gazebo (JointController) --> ruedas
+    /joint_states --W--> ξ --η̇ = J(φ)ξ, Euler--> /odom + TF odom -> base_link
 
     ros2 run mi_mecanum_control cinematica --ros-args -p use_sim_time:=true
 """
@@ -32,7 +32,7 @@ LY = 0.34 / 2          # ly : separacion_ruedas / 2
 
 RUEDAS = ['del_izq', 'del_der', 'tra_izq', 'tra_der']
 JOINTS = [f'joint_rueda_{p}' for p in RUEDAS]
-TOPICOS = [f'/{p}_wheel_cmd_vel' for p in ['fl', 'fr', 'rl', 'rr']]
+TOPICOS = [f'/vel_rueda_{p}' for p in RUEDAS]
 
 
 def matriz_W(a, lx, ly):
@@ -71,14 +71,14 @@ class Cinematica(Node):
 
         # Directa + odometría
         self.create_subscription(JointState, '/joint_states', self.cb_joints, 10)
-        self.pub_odom = self.create_publisher(Odometry, '/odom_kinematic', 10)
+        self.pub_odom = self.create_publisher(Odometry, '/odom', 10)
         self.tf = TransformBroadcaster(self)
 
         self.x = self.y = self.phi = 0.0
         self.t_ant = None
 
         np.set_printoptions(precision=4, suppress=True)
-        self.get_logger().info(f'\nQ =\n{self.W_pinv}\nW =\n{self.W}')
+        self.get_logger().info(f'\nW =\n{self.W}\nW⁺ =\n{self.W_pinv}')
 
     # ---------- Cinemática inversa: ω = W⁺ ξ ----------
     def cb_cmd_vel(self, msg):
