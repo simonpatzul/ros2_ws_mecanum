@@ -20,7 +20,10 @@ from rclpy.node import Node
 
 # ===== TODO: puntos de SU variante: (x [m], y [m], θ [rad]) =====
 PUNTOS = [
-    # (x, y, theta),
+    (1.0, -1.5, 0.0),
+    (2.0, 0.0, math.pi),
+    (1.0, 1.5, 0.0),
+    (0.0, 0.0, 0.0),
 ]
 
 L1, L2, L3 = 1.0, 1.0, 1.5     # Λ = diag(λ1, λ2, λ3)
@@ -75,7 +78,7 @@ class IrAPuntos(Node):
         self.i = 0
         self.pose = None
 
-        self.create_subscription(Odometry, '/odom', self.cb_odom, 10)
+        self.create_subscription(Odometry, '/odom_kinematic', self.cb_odom, 10)
         self.pub = self.create_publisher(Twist, '/cmd_vel', 10)
         self.create_timer(0.02, self.lazo)    # 50 Hz
         self.get_logger().info(f'Puntos: {self.puntos}')

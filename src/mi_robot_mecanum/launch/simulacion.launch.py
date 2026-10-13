@@ -47,7 +47,7 @@ def generate_launch_description():
 
     spawn = Node(
         package='ros_gz_sim', executable='create',
-        arguments=['-name', 'mi_robot', '-file', sdf_file,
+        arguments=['-name', 'mecanum', '-file', sdf_file,
                    '-x', '0.0', '-y', '0.0', '-z', '0.1'],
         output='screen',
     )
@@ -57,19 +57,19 @@ def generate_launch_description():
         package='ros_gz_bridge', executable='parameter_bridge',
         arguments=[
             '/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock',
-            '/vel_rueda_del_izq@std_msgs/msg/Float64]gz.msgs.Double',
-            '/vel_rueda_del_der@std_msgs/msg/Float64]gz.msgs.Double',
-            '/vel_rueda_tra_izq@std_msgs/msg/Float64]gz.msgs.Double',
-            '/vel_rueda_tra_der@std_msgs/msg/Float64]gz.msgs.Double',
-            '/world/pista/model/mi_robot/joint_state@sensor_msgs/msg/JointState[gz.msgs.Model',
+            '/fl_wheel_cmd_vel@std_msgs/msg/Float64]gz.msgs.Double',
+            '/fr_wheel_cmd_vel@std_msgs/msg/Float64]gz.msgs.Double',
+            '/rl_wheel_cmd_vel@std_msgs/msg/Float64]gz.msgs.Double',
+            '/rr_wheel_cmd_vel@std_msgs/msg/Float64]gz.msgs.Double',
+            '/world/exam/model/mecanum/joint_state@sensor_msgs/msg/JointState[gz.msgs.Model',
             '/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan',
-            '/camara/image@sensor_msgs/msg/Image[gz.msgs.Image',
-            '/camara/depth_image@sensor_msgs/msg/Image[gz.msgs.Image',
-            '/camara/points@sensor_msgs/msg/PointCloud2[gz.msgs.PointCloudPacked',
-            '/camara/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo',
+            '/camera/image@sensor_msgs/msg/Image[gz.msgs.Image',
+            '/camera/depth_image@sensor_msgs/msg/Image[gz.msgs.Image',
+            '/camera/points@sensor_msgs/msg/PointCloud2[gz.msgs.PointCloudPacked',
+            '/camera/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo',
         ],
         remappings=[
-            ('/world/pista/model/mi_robot/joint_state', '/joint_states'),
+            ('/world/exam/model/mecanum/joint_state', '/joint_states'),
         ],
         parameters=[{'use_sim_time': True}],
         output='screen',
