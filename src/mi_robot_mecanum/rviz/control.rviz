@@ -8,8 +8,42 @@ Visualization Manager:
       Name: Grid
       Enabled: true
       Reference Frame: <Fixed Frame>
-  # TODO (Parte 3): agregar RobotModel, TF, LaserScan, Image (RGB y profundidad),
-  #   PointCloud2 y Odometry desde RViz y guardar aquí (File > Save Config As)
+    - Class: rviz_default_plugins/RobotModel
+      Name: RobotModel
+      Enabled: true
+      Description Source: Topic
+      Description Topic:
+        Value: /robot_description
+    - Class: rviz_default_plugins/TF
+      Name: TF
+      Enabled: true
+    - Class: rviz_default_plugins/LaserScan
+      Name: LaserScan
+      Enabled: true
+      Topic:
+        Value: /scan
+      Size (m): 0.03
+    - Class: rviz_default_plugins/Image
+      Name: Image RGB
+      Enabled: true
+      Topic:
+        Value: /camera/image
+    - Class: rviz_default_plugins/Image
+      Name: Image Profundidad
+      Enabled: true
+      Topic:
+        Value: /camera/depth_image
+    - Class: rviz_default_plugins/PointCloud2
+      Name: PointCloud2
+      Enabled: true
+      Topic:
+        Value: /camera/points
+      Size (m): 0.01
+    - Class: rviz_default_plugins/Odometry
+      Name: Odometry
+      Enabled: true
+      Topic:
+        Value: /odom_kinematic
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
