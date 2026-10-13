@@ -1,1 +1,0 @@
-/home/simon/Downloads/ros2_ws_mecanum_estudiantes2/ros2_ws_mecanum/src/mi_robot_mecanum/launch/sdf_mecanum.py
